@@ -23,13 +23,6 @@ def main() -> None:  # pragma: no cover
         description="btceurhist.",
         epilog="Enjoy the btceurhist functionality!",
     )
-    # This is required positional argument
-    parser.add_argument(
-        "name",
-        type=str,
-        help="The username",
-        default="drandreaskrueger",
-    )
     # This is optional named argument
     parser.add_argument(
         "-m",
@@ -46,7 +39,7 @@ def main() -> None:  # pragma: no cover
         help="Optionally adds verbosity",
     )
     args = parser.parse_args()
-    print(f"{args.message} {args.name}!")
+    print(f"{args.message} !")
     if args.verbose:
         print("Verbose mode is on.")
 
