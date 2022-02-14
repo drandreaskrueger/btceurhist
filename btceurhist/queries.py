@@ -6,6 +6,11 @@ import os
 import pprint 
 import requests # pip install requests
 
+try: 
+    import rowcache
+except:
+    import btceurhist.rowcache as rowcache
+
 # open:
 COINDESK_BTCUSD="https://api.coindesk.com/v1/bpi/historical/close.json?start={startdate}&end={enddate}"
 
@@ -103,7 +108,9 @@ CALLER = {"btcusd": btcusd,
 
 def pairprice(pair, date):
     # print (pair, date)
-    return "%s" % CALLER[pair](date)
+    answer = "%s" % (CALLER[pair](date))
+    rowcache.append([date, pair, answer])
+    return answer
     
 
 def test_all_queries():
