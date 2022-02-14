@@ -13,6 +13,8 @@ If you want to replace this with a Flask application run:
 and then choose `flask` as template.
 """
 
+import btceurhist.app as app
+
 
 class BaseClass:
     def base_method(self) -> str:
@@ -30,3 +32,11 @@ def base_function() -> str:
     Base function.
     """
     return "hello from base function"
+
+
+def base_server() -> None:
+    """
+    starts server, never returns.
+    """
+    app.server()
+

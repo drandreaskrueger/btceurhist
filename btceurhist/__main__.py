@@ -1,6 +1,6 @@
 import argparse  # pragma: no cover
 
-from . import BaseClass, base_function  # pragma: no cover
+from . import BaseClass, base_function, base_server  # pragma: no cover
 
 
 def main() -> None:  # pragma: no cover
@@ -22,6 +22,13 @@ def main() -> None:  # pragma: no cover
     parser = argparse.ArgumentParser(
         description="btceurhist.",
         epilog="Enjoy the btceurhist functionality!",
+    )
+    # This is required positional argument
+    parser.add_argument(
+        "method",
+        type=str,
+        help="the method to call",
+        default="startserver",
     )
     # This is optional named argument
     parser.add_argument(
@@ -48,6 +55,10 @@ def main() -> None:  # pragma: no cover
     print(base.base_method())
     print(base_function())
     print("End of main function")
+    
+    if args.method=="startserver":
+        print ("starting server:")
+        base_server()
 
 
 if __name__ == "__main__":  # pragma: no cover
