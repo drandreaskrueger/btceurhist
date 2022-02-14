@@ -1,3 +1,10 @@
+---
+
+release v0.3.0 = see https://github.com/drandreaskrueger/btceurhist/releases/tag/v0.3.0
+
+---
+
+all these template files would have to be cleaned up still: 
 
 # Python Project Template
 
