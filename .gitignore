@@ -132,3 +132,4 @@ dmypy.json
 .github/templates/*
 /.project
 /.pydevproject
+/LOGGING.txt
