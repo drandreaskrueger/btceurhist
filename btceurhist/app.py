@@ -3,11 +3,11 @@ bottle app
 
 endpoints:
 
-    /<pair>/<date>
+    /<pair>/<date> for pairs: see queries.py
     
     /
     /home
-    /output
+    /usage
     /examples
 """
 
@@ -45,6 +45,11 @@ def handle_root_url():
 def show_output():
     output = "to be generated"
     return template('output', output=output)
+
+@route('/usage')
+def show_oxr_usage():
+    usage = queries.oxr_usage()
+    return template('usage', usage=usage)
 
 @route('/examples')
 def show_examples():
