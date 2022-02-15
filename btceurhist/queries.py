@@ -7,9 +7,10 @@ import pprint
 import requests  # pip install requests
 
 try:
-    import rowcache
-except Exception:
-    import btceurhist.rowcache as rowcache
+    from . import rowcache
+except ImportError:
+    import rowcache  # type: ignore[no-redef]
+
 
 # open:
 COINDESK_BTCUSD = "https://api.coindesk.com/v1/bpi/historical/close.json"\

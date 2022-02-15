@@ -16,9 +16,9 @@ import bottle  # pip install bottle
 from bottle import route, template, redirect, run
 
 try:
-    import queries
-except Exception:
-    import btceurhist.queries as queries
+    from . import queries
+except ImportError:
+    import queries  # type: ignore[no-redef]
 
 VERSION_PATH = "VERSION"
 
