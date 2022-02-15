@@ -119,9 +119,14 @@ CALLER = {"btcusd": btcusd,
 
 def pairprice(pair, date):
     # print (pair, date)
-    answer = "%s" % (CALLER[pair](date))
-    rowcache.append([date, pair, answer])
-    return answer
+    answer_string = CALLER[pair](date)
+    try:
+        price = str(float(answer_string))  # test whether number - or error
+        rowcache.append([date, pair, price])
+    except Exception:
+        price = answer_string
+
+    return price
 
 
 def test_all_queries():

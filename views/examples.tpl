@@ -19,7 +19,11 @@
       	<li><a href="/price/btcusd/2022-01-01">btcusd on 1/1/2022</a></li>
       	<li><a href="/price/btceur/2022-01-01">btceur on 1/1/2022</a></li>
       </ul></li>
-      
+      <li>errors<ul>
+      	<li><a href="/price/usdeur/2008-01-77">usdeur on 77/1/2008</a></li>      	
+      	<li><a href="/price/btcusd/2008-01-01">btcusd on 1/1/2008</a></li>
+      	<li><a href="/price/btceur/2099-1-1">btceur on 1/1/2099</a></li>
+      </ul></li>
       </ul>
       <p>That's it.</p> 
   </body>
