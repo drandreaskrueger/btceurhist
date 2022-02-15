@@ -55,9 +55,9 @@ def main() -> None:  # pragma: no cover
     print(base.base_method())
     print(base_function())
     print("End of main function")
-    
-    if args.method=="startserver":
-        print ("starting server:")
+
+    if args.method == "startserver":
+        print("starting server:")
         base_server()
 
 
