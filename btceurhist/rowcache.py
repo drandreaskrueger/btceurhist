@@ -1,11 +1,11 @@
 """
     webqueries
 """
-import os
 import csv
+import os
 
 COL_HEADERS = "date pair value".split(" ")
-PAIRS = "btcusd usdeur btceur". split(" ")
+PAIRS = "btcusd usdeur btceur".split(" ")
 SAVE_ALL_ANSWERS_FILE = "SAVE_ALL_ANSWERS.csv"
 
 if "btceurhist/btceurhist" not in os.getcwd():  # corrects path during dev
@@ -16,7 +16,7 @@ def append(row, filename=SAVE_ALL_ANSWERS_FILE):
     """
     appends answer to cache file
     """
-    tab_separated = ("\t".join(row))+"\n"
+    tab_separated = ("\t".join(row)) + "\n"
     with open(filename, "a") as f:
         f.write(tab_separated)
 
@@ -38,7 +38,7 @@ def read_cache_file(filename=SAVE_ALL_ANSWERS_FILE):
     """
     cache = dict([(pairname, {}) for pairname in PAIRS])
     try:
-        with open(filename, 'r') as f:
+        with open(filename, "r") as f:
             cache_raw = csv.reader(f, delimiter="\t")
             next(cache_raw)  # skip header row
             for row in cache_raw:
@@ -66,5 +66,5 @@ def insert(pair, date, price, cache):
     cache[pair][date] = price
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     create_csv_file()

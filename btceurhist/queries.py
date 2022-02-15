@@ -4,6 +4,7 @@
 
 import os
 import pprint
+
 import requests  # pip install requests
 
 try:
@@ -13,16 +14,22 @@ except ImportError:
 
 
 # open:
-COINDESK_BTCUSD = "https://api.coindesk.com/v1/bpi/historical/close.json"\
-                  "?start={startdate}&end={enddate}"
+COINDESK_BTCUSD = (
+    "https://api.coindesk.com/v1/bpi/historical/close.json"
+    "?start={startdate}&end={enddate}"
+)
 
 # open, but covers no weekends?
-FOORILLA_USDEUR = "https://fxdata.foorilla.com/api/usdrates/"\
-                  "?currency=EUR&date_min={startdate}&date_max={enddate}"
+FOORILLA_USDEUR = (
+    "https://fxdata.foorilla.com/api/usdrates/"
+    "?currency=EUR&date_min={startdate}&date_max={enddate}"
+)
 
 # OpenExchangeRates.com
-OXR_USDEUR = "https://openexchangerates.org/api/historical/{date}.json"\
-             "?app_id={app_id}&symbols={symbols}"
+OXR_USDEUR = (
+    "https://openexchangerates.org/api/historical/{date}.json"
+    "?app_id={app_id}&symbols={symbols}"
+)
 OXR_USAGE = "https://openexchangerates.org/api/usage.json?app_id={app_id}"
 # 1000 per month are free, store your APP_ID in this file:
 OPENEXCHANGERATES_PATH = "OPENEXCHANGERATES"
@@ -31,8 +38,10 @@ if "btceurhist/btceurhist" not in os.getcwd():  # corrects path during dev
 try:
     APP_ID = open(OPENEXCHANGERATES_PATH).read()
 except FileNotFoundError:
-    print("ERROR: You must store your openexchangerates.com "
-          "APP_ID into file: '%s'" % OPENEXCHANGERATES_PATH)
+    print(
+        "ERROR: You must store your openexchangerates.com "
+        "APP_ID into file: '%s'" % OPENEXCHANGERATES_PATH
+    )
     APP_ID = "App_ID-is-missing"
 
 
@@ -68,7 +77,7 @@ def btcusd(date, urltemplate=COINDESK_BTCUSD):
     params = {"startdate": date, "enddate": date}
     url = urltemplate.format(**params)
     j = caller(url)
-    price = jsoner(j, ['bpi', date])
+    price = jsoner(j, ["bpi", date])
     return price
 
 
@@ -78,10 +87,10 @@ def usdeur_foorilla(date, urltemplate=FOORILLA_USDEUR):
     url = urltemplate.format(**params)
     j = caller(url)
     # print (j)
-    pricedict = jsoner(j, ['results'])
+    pricedict = jsoner(j, ["results"])
     if isinstance(pricedict, str):
         return pricedict  # error message
-    price = jsoner(pricedict[0], ['value'])
+    price = jsoner(pricedict[0], ["value"])
     return price
 
 
@@ -92,7 +101,7 @@ def usdeur_oxr(date, urltemplate=OXR_USDEUR, app_id=APP_ID):
     # print (url)
     j = caller(url)
     # print (j)
-    price = jsoner(j, ['rates', "EUR"])
+    price = jsoner(j, ["rates", "EUR"])
     return price
 
 
@@ -121,10 +130,7 @@ def oxr_usage(urltemplate=OXR_USAGE, app_id=APP_ID):
     return answer
 
 
-CALLER = {"btcusd": btcusd,
-          "usdeur": usdeur,
-          "btceur": btceur
-          }
+CALLER = {"btcusd": btcusd, "usdeur": usdeur, "btceur": btceur}
 
 
 def pairprice(pair, date, cache=CACHE):
@@ -178,5 +184,5 @@ def test_all_queries():
     print(pairprice("btceur", "2020-01-01"))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     test_all_queries()
