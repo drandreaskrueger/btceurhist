@@ -20,14 +20,20 @@ COINDESK_BTCUSD = "https://api.coindesk.com/v1/bpi/historical/close.json"\
 FOORILLA_USDEUR = "https://fxdata.foorilla.com/api/usdrates/"\
                   "?currency=EUR&date_min={startdate}&date_max={enddate}"
 
-# 1000 per month are free:
-OPENEXCHANGERATES_PATH = "OPENEXCHANGERATES"
-if "btceurhist/btceurhist" not in os.getcwd():  # corrects path during dev
-    OPENEXCHANGERATES_PATH = os.path.join("btceurhist", OPENEXCHANGERATES_PATH)
-APP_ID = open(OPENEXCHANGERATES_PATH).read()
+# OpenExchangeRates.com
 OXR_USDEUR = "https://openexchangerates.org/api/historical/{date}.json"\
              "?app_id={app_id}&symbols={symbols}"
 OXR_USAGE = "https://openexchangerates.org/api/usage.json?app_id={app_id}"
+# 1000 per month are free, store your APP_ID in this file:
+OPENEXCHANGERATES_PATH = "OPENEXCHANGERATES"
+if "btceurhist/btceurhist" not in os.getcwd():  # corrects path during dev
+    OPENEXCHANGERATES_PATH = os.path.join("btceurhist", OPENEXCHANGERATES_PATH)
+try:
+    APP_ID = open(OPENEXCHANGERATES_PATH).read()
+except FileNotFoundError:
+    print("ERROR: You must store your openexchangerates.com "
+          "APP_ID into file: '%s'" % OPENEXCHANGERATES_PATH)
+    APP_ID = "App_ID-is-missing"
 
 
 CACHE = rowcache.read_cache_file()  # yes, as a global variable, I am bad lol
