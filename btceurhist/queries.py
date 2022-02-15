@@ -29,6 +29,9 @@ OXR_USDEUR = "https://openexchangerates.org/api/historical/{date}.json"\
 OXR_USAGE = "https://openexchangerates.org/api/usage.json?app_id={app_id}"
 
 
+CACHE = rowcache.read_cache_file()  # yes, as a global variable, I am bad lol
+
+
 def caller(url):
     try:
         r = requests.get(url)
@@ -117,14 +120,34 @@ CALLER = {"btcusd": btcusd,
           }
 
 
-def pairprice(pair, date):
+def pairprice(pair, date, cache=CACHE):
+    """
+    Tries to find the price for that date in the cache.
+
+    If not there yet, query the internet.
+    If answer is numerical (not string=error), then
+      append answer to cache log, and
+      insert into RAM cache.
+
+    Returns price (or error message) for (pair, date).
+    """
     # print (pair, date)
+    if pair not in CALLER:
+        return "ERROR: pair '%s' not implemented yet." % pair
+
+    cached_answer = rowcache.lookup(pair, date, cache)
+    if cached_answer:
+        # print("recycled old answer!")
+        return cached_answer
+
     answer_string = CALLER[pair](date)
     try:
         price = str(float(answer_string))  # test whether number - or error
         rowcache.append([date, pair, price])
+        rowcache.insert(pair, date, price, cache)
+        # print("new answer appended to file cache & inserted into RAM cache")
     except Exception:
-        price = answer_string
+        price = answer_string  # error message
 
     return price
 
