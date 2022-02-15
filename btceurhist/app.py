@@ -60,7 +60,7 @@ def show_oxr_usage():
 def show_examples():
     return template('examples')
 
-#                               endpoints with query answers 
+#                               endpoints with query answers
 
 
 @route('/price/<pair>/<date>')
