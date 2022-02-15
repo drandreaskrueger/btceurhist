@@ -17,8 +17,7 @@ A simplistic endpoint app to deliver historical BTCEUR prices, into e.g. LibreOf
 ## relevant files
 * [SAVE_ALL_ANSWERS.csv](../btceurhist/SAVE_ALL_ANSWERS.csv) = cache of previous answers, so that same (pair, date) needs not be queried again
 * [LOGGING.txt](../LOGGING.txt) = server log, contains all calls, and possible errors
-* [OPENEXCHANGERATES](../btceurhist/OPENEXCHANGERATES) = authentication APP_ID, is needed by `queries.py` --> `usdeur()`
-  ** get [here for free](https://openexchangerates.org/signup/free) your own APP_ID
+* [OPENEXCHANGERATES](../btceurhist/OPENEXCHANGERATES) = auth APP_ID for `queries.py` --> `usdeur()` = get [here for free](https://openexchangerates.org/signup/free)
 
 ## Usage examples
 ### btcusd
