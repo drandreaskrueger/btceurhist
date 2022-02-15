@@ -30,3 +30,12 @@ My stuff is in these folders: [btceurhist/](btceurhist/), [views/](views/), [sta
 Simplest possible "BTCEUR price on day XYZ" in LibreOffice:
 
 ![docs/example-usdeur-btceur.png](docs/example-usdeur-btceur.png)
+
+## Status
+First time with **github actions**, very exciting. 
+
+And yessss ... eventually I got the linter and the tests all returning with no issues.
+
+And that means, the [CI action](https://github.com/drandreaskrueger/btceurhist/actions) (continous integration) is [succeeding for my project, on Feb 15th 2022](https://github.com/drandreaskrueger/btceurhist/actions/runs/1849699477). 
+
+Hoooray.
