@@ -3,36 +3,41 @@
 """
 
 import os
-import pprint 
-import requests # pip install requests
+import pprint
+import requests  # pip install requests
 
-try: 
+try:
     import rowcache
-except:
+except Exception:
     import btceurhist.rowcache as rowcache
 
 # open:
-COINDESK_BTCUSD="https://api.coindesk.com/v1/bpi/historical/close.json?start={startdate}&end={enddate}"
+COINDESK_BTCUSD = "https://api.coindesk.com/v1/bpi/historical/close.json"\
+                  "?start={startdate}&end={enddate}"
 
 # open, but covers no weekends?
-FOORILLA_USDEUR="https://fxdata.foorilla.com/api/usdrates/?currency=EUR&date_min={startdate}&date_max={enddate}"
+FOORILLA_USDEUR = "https://fxdata.foorilla.com/api/usdrates/"\
+                  "?currency=EUR&date_min={startdate}&date_max={enddate}"
 
 # 1000 per month are free:
-OPENEXCHANGERATES_PATH="OPENEXCHANGERATES"
-if "btceurhist/btceurhist" not in os.getcwd(): # corrects path for local machine
-    OPENEXCHANGERATES_PATH=os.path.join("btceurhist", OPENEXCHANGERATES_PATH)
-APP_ID=open(OPENEXCHANGERATES_PATH).read()
-OXR_USDEUR= "https://openexchangerates.org/api/historical/{date}.json?app_id={app_id}&symbols={symbols}"
+OPENEXCHANGERATES_PATH = "OPENEXCHANGERATES"
+if "btceurhist/btceurhist" not in os.getcwd():  # corrects path during dev
+    OPENEXCHANGERATES_PATH = os.path.join("btceurhist", OPENEXCHANGERATES_PATH)
+APP_ID = open(OPENEXCHANGERATES_PATH).read()
+OXR_USDEUR = "https://openexchangerates.org/api/historical/{date}.json"\
+             "?app_id={app_id}&symbols={symbols}"
 OXR_USAGE = "https://openexchangerates.org/api/usage.json?app_id={app_id}"
+
 
 def caller(url):
     try:
-        r=requests.get(url)
-        answer=r.json()
+        r = requests.get(url)
+        answer = r.json()
     except Exception as e:
-        answer="(%s) %s" % (type(e), e)
+        answer = "(%s) %s" % (type(e), e)
 
     return answer
+
 
 def jsoner(j, jpath):
     if type(j)==type("a string"):

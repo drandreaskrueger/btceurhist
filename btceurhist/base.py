@@ -39,4 +39,3 @@ def base_server() -> None:
     starts server, never returns.
     """
     app.server()
-
