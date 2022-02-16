@@ -27,12 +27,12 @@ Note that this is the first time that I have been using the `python-project-temp
 My stuff is in these folders: [btceurhist/](btceurhist/), [views/](views/), [static/](static/), and in [docs/](docs/).
 
 ## Purpose
-Simplest possible "BTCEUR price on day XYZ" in LibreOffice:
+Problems: LibreOffice can still not process JSON answers, crazily. Plus, Coindesk gives BTCUSD not BTCEUR historical data. Now, with this little project we provide the simplest possible **"BTCEUR price on day XYZ"** in LibreOffice, using its =WEBSERVICE(url) command: 
 
 ![docs/example-usdeur-btceur.png](docs/example-usdeur-btceur.png)
 
 ## Status
-First time with **github actions**, very exciting. 
+First time with **github actions**, very exciting. *Learning by doing* this with [the standard Python project template](https://github.com/rochacbruno/python-project-template) was another reason for this project. 
 
 And yessss ... eventually I got the linter and the tests all returning with no issues.
 
