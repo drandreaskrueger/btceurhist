@@ -5,7 +5,7 @@ import csv
 import os
 
 COL_HEADERS = "date pair value".split(" ")
-PAIRS = "btcusd usdeur btceur".split(" ")
+PAIRS = "btcusd usdeur btceur ethusd etheur".split(" ")
 SAVE_ALL_ANSWERS_FILE = "SAVE_ALL_ANSWERS.csv"
 
 if "btceurhist/btceurhist" not in os.getcwd():  # corrects path during dev

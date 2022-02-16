@@ -25,6 +25,11 @@
       	<li><a href="/price/btceur/2099-1-1">btceur on 1/1/2099</a></li>
       	<li><a href="/price/btcxxx/2020-1-1">btcxxx on 1/1/2020</a></li>
       </ul></li>
+      <li>Ethereum<ul>
+      	<li><a href="/price/ethusd/2022-01-01">ethusd on 1/1/2022</a></li>
+      	<li><a href="/price/etheur/2022-01-01">etheur on 1/1/2022</a></li>
+      	<li><a href="/price/usdeur/2022-01-01">usdeur on 1/1/2022</a></li>      	
+      </ul></li>
       </ul>
       <p>That's it.</p> 
   </body>

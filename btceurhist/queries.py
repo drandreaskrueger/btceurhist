@@ -29,6 +29,10 @@ OXR_USDEUR = (
     "https://openexchangerates.org/api/historical/{date}.json"
     "?app_id={app_id}&symbols={symbols}"
 )
+OXR_ALTCOINS = (
+    "https://openexchangerates.org/api/historical/2020-07-10.json"
+    "?app_id={app_id}&symbols={symbols}&show_alternative=1"
+)
 OXR_USAGE = "https://openexchangerates.org/api/usage.json?app_id={app_id}"
 # 1000 per month are free, store your APP_ID in this file:
 OPENEXCHANGERATES_PATH = "OPENEXCHANGERATES"
@@ -107,29 +111,50 @@ def usdeur_oxr(date, urltemplate=OXR_USDEUR, app_id=APP_ID):
 usdeur = usdeur_oxr
 
 
-def btceur(date):
-    in_usd = btcusd(date)
+def coineur(date, coinusd_fn=btcusd):
+    in_usd = coinusd_fn(date)
     to_eur = usdeur(date)
     try:
         answer = float(in_usd) * float(to_eur)
     except Exception:
         answer = "cannot multiply: (%s, %s)" % (in_usd, to_eur)
     return answer
-    return 10000
+
+
+def btceur(date):
+    return coineur(date, coinusd_fn=btcusd)
 
 
 def oxr_usage(urltemplate=OXR_USAGE, app_id=APP_ID):
     params = {"app_id": app_id}
     url = urltemplate.format(**params)
-    # print (url)
     j = caller(url)
     u = jsoner(j, ["data", "usage"])
     answer = pprint.pformat(u)
-    # print (answer)
     return answer
 
 
-CALLER = {"btcusd": btcusd, "usdeur": usdeur, "btceur": btceur}
+def altcoinusd(altcoin, date, urltemplate=OXR_ALTCOINS, app_id=APP_ID):
+    params = {"date": date, "app_id": app_id, "symbols": altcoin}
+    url = urltemplate.format(**params)
+    j = caller(url)
+    price_inverse = jsoner(j, ["rates", altcoin.upper()])
+    if isinstance(price_inverse, str):
+        return price_inverse
+    return 1.0 / float(price_inverse)
+
+
+def ethusd(date, urltemplate=OXR_ALTCOINS, app_id=APP_ID):
+    return altcoinusd("ETH", date, urltemplate, app_id)
+
+
+def etheur(date):
+    return coineur(date, coinusd_fn=ethusd)
+
+
+CALLER = {"usdeur": usdeur,
+          "btcusd": btcusd, "btceur": btceur,
+          "ethusd": ethusd, "etheur": etheur}
 
 
 def pairprice(pair, date, cache=CACHE):
@@ -177,10 +202,17 @@ def test_all_queries():
     date="2021-03-15"; print (btceur(date))
     date="2021-03-77"; print (btceur(date))
     print()
+    date = "2021-01-01"; print(ethusd(date))
+    date = "2021-01-01"; print(etheur(date))
+    date = "2021-01-01"; print(usdeur(date))
+    print()
+    exit()
     """
     print(pairprice("btcusd", "2020-01-01"))
     print(pairprice("usdeur", "2020-01-01"))
     print(pairprice("btceur", "2020-01-01"))
+    print(pairprice("ethusd", "2020-01-01"))
+    print(pairprice("etheur", "2020-01-01"))
 
 
 if __name__ == "__main__":
