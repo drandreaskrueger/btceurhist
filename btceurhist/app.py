@@ -18,7 +18,7 @@ from bottle import redirect, route, run, template
 
 try:
     from . import queries
-except ImportError:
+except ImportError:  # we also want to run `python3 app.py` separately, so:
     import queries  # type: ignore[no-redef]
 
 VERSION_PATH = "VERSION"

@@ -9,9 +9,8 @@ import requests  # pip install requests
 
 try:
     from . import rowcache
-except ImportError:
+except ImportError:  # we also want to run `python3 queries.py` separately, so:
     import rowcache  # type: ignore[no-redef]
-
 
 # open:
 COINDESK_BTCUSD = (
