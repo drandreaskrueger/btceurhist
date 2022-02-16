@@ -30,7 +30,7 @@ OXR_USDEUR = (
     "?app_id={app_id}&symbols={symbols}"
 )
 OXR_ALTCOINS = (
-    "https://openexchangerates.org/api/historical/2020-07-10.json"
+    "https://openexchangerates.org/api/historical/{date}.json"
     "?app_id={app_id}&symbols={symbols}&show_alternative=1"
 )
 OXR_USAGE = "https://openexchangerates.org/api/usage.json?app_id={app_id}"
@@ -137,6 +137,7 @@ def oxr_usage(urltemplate=OXR_USAGE, app_id=APP_ID):
 def altcoinusd(altcoin, date, urltemplate=OXR_ALTCOINS, app_id=APP_ID):
     params = {"date": date, "app_id": app_id, "symbols": altcoin}
     url = urltemplate.format(**params)
+    # print(url)
     j = caller(url)
     price_inverse = jsoner(j, ["rates", altcoin.upper()])
     if isinstance(price_inverse, str):
