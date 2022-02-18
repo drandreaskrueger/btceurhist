@@ -65,7 +65,7 @@ def show_examples():
 #                               endpoints with query answers
 
 
-@route("/price/<pair>/<date>")
+@route("/price/<pair>/<date>", method=['GET', 'HEAD', 'OPTIONS'])
 def give_price(pair, date):
     return queries.pairprice(pair, date)
 
