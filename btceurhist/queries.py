@@ -155,7 +155,11 @@ def etheur(date):
 
 CALLER = {"usdeur": usdeur,
           "btcusd": btcusd, "btceur": btceur,
-          "ethusd": ethusd, "etheur": etheur}
+          "ethusd": ethusd, "etheur": etheur,
+          "eureur": lambda x: 1.0,
+          "btcbtc": lambda x: 1.0,
+          "etheth": lambda x: 1.0,
+          "usdusd": lambda x: 1.0}
 
 
 def pairprice(pair, date, cache=CACHE):
@@ -214,6 +218,7 @@ def test_all_queries():
     print(pairprice("btceur", "2020-01-01"))
     print(pairprice("ethusd", "2020-01-01"))
     print(pairprice("etheur", "2020-01-01"))
+    print(pairprice("eureur", "2020-01-01"))
 
 
 if __name__ == "__main__":

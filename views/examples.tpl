@@ -32,6 +32,12 @@
       	<li><a href="/price/etheur/2022-01-01">etheur on 1/1/2022</a></li>
       	<li><a href="/price/usdeur/2022-01-01">usdeur on 1/1/2022</a></li>      	
       </ul></li>
+      <li>1=1 dummies<ul>
+      	<li><a href="/price/eureur/2020-01-01">eureur on 1/1/2020</a></li>
+      	<li><a href="/price/usdusd/2021-01-01">usdusd on 1/1/2021</a></li>
+      	<li><a href="/price/btcbtc/2022-01-01">btcbtc on 1/1/2022</a></li>
+      	<li><a href="/price/etheth/2022-01-01">etheth on 1/1/2022</a></li>
+      </ul></li>
       </ul>
       <p>That's it.</p> 
   </body>
