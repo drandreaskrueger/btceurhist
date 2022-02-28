@@ -38,6 +38,10 @@
       	<li><a href="/price/btcbtc/2022-01-01">btcbtc on 1/1/2022</a></li>
       	<li><a href="/price/etheth/2022-01-01">etheth on 1/1/2022</a></li>
       </ul></li>
+      <li>bottle app other routes<ul>
+      	<li><a href="/images/logo.png">/images/logo.png</a></li>
+      	<li><a href="/css/main.css">/css/main.css</a></li>
+      </ul></li>
       </ul>
       <p>That's it.</p> 
       <p>How to extend with more pairs? Perhaps study the 

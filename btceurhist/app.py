@@ -50,6 +50,11 @@ def send_css(filename):
     return static_file(filename, root=os.path.join(STATIC_ROOT, 'css'))
 
 
+@route('/images/<filename>')
+def send_images(filename):
+    return static_file(filename, root=os.path.join(STATIC_ROOT, 'images'))
+
+
 @route("/output")
 def show_output():
     output = "to be generated"
