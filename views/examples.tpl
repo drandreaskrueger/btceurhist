@@ -40,5 +40,7 @@
       </ul></li>
       </ul>
       <p>That's it.</p> 
+      <p>How to extend with more pairs? Perhaps study the 
+ <a href="https://github.com/drandreaskrueger/btceurhist/commit/153a1c32fdb02365e1f68bcb86066fad4f0fa293">'eureur' dummy pair</a> code change.
   </body>
 </html>
