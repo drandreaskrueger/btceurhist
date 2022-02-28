@@ -14,7 +14,7 @@ endpoints:
 import os
 
 import bottle  # pip install bottle
-from bottle import redirect, route, run, template
+from bottle import redirect, route, run, template, static_file
 
 try:
     from . import queries
@@ -22,13 +22,13 @@ except ImportError:  # we also want to run `python3 app.py` separately, so:
     import queries  # type: ignore[no-redef]
 
 VERSION_PATH = "VERSION"
+STATIC_ROOT = 'static'
 
 if "btceurhist/btceurhist" in os.getcwd():  # corrects path for local machine
     bottle.TEMPLATE_PATH.insert(0, "../views")
-    # STATIC_ROOT = os.path.join("..", STATIC_ROOT)
+    STATIC_ROOT = os.path.join("..", STATIC_ROOT)
 else:
     VERSION_PATH = os.path.join("btceurhist", VERSION_PATH)
-    # STATIC_ROOT = 'static'
 
 VERSION = open(VERSION_PATH).read()
 
@@ -43,6 +43,11 @@ def show_home():
 @route("/")
 def handle_root_url():
     redirect("/home")
+
+
+@route('/css/<filename>')
+def send_css(filename):
+    return static_file(filename, root=os.path.join(STATIC_ROOT, 'css'))
 
 
 @route("/output")
