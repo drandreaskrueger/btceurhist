@@ -39,3 +39,6 @@ And yessss ... eventually I got the linter and the tests all returning with no i
 And that means, the [CI action](https://github.com/drandreaskrueger/btceurhist/actions) (continous integration) is [succeeding for my project, on Feb 15th 2022](https://github.com/drandreaskrueger/btceurhist/actions/runs/1849699477). 
 
 Hoooray.
+
+## ToDo, Ideas
+Change the caching, so that not only the final result (BTCEUR) but also the intermediate steps (BTCUSD, USDEUR) are appended to and retrieved from the cache.
