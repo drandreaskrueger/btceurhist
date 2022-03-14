@@ -5,7 +5,8 @@ import csv
 import os
 
 COL_HEADERS = "date pair value".split(" ")
-PAIRS = "btcusd usdeur btceur ethusd etheur eureur usdusd btcbtc etheth".split(" ")
+SAMESAME = "eureur usdusd btcbtc etheth". split()
+PAIRS = "btcusd usdeur btceur ethusd etheur".split(" ") + SAMESAME
 SAVE_ALL_ANSWERS_FILE = "SAVE_ALL_ANSWERS.csv"
 
 if "btceurhist/btceurhist" not in os.getcwd():  # corrects path during dev
@@ -32,7 +33,7 @@ def create_csv_file(col_headers=COL_HEADERS, filename=SAVE_ALL_ANSWERS_FILE):
         print("Done. File '%s' should exist now, check folder." % filename)
 
 
-def read_cache_file(filename=SAVE_ALL_ANSWERS_FILE):
+def read_cache_file(filename=SAVE_ALL_ANSWERS_FILE, ifPrint=True):
     """
     read in previous answers
     """
@@ -45,6 +46,13 @@ def read_cache_file(filename=SAVE_ALL_ANSWERS_FILE):
                 cache[row[1]][row[0]] = row[2]  # duplicates overwritten anyway
     except FileNotFoundError:
         create_csv_file()
+
+    if ifPrint:
+        summary = [" %s: %d" % (pairname, len(datadict.items()))
+                   for pairname, datadict in cache.items()
+                   if pairname not in SAMESAME]
+        print("Loaded previous prices:")
+        print("\n".join(summary))
     return cache
 
 
